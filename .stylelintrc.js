@@ -8,7 +8,6 @@ module.exports = {
     'function-name-case': 'lower',
     'no-descending-specificity': null,
     'no-invalid-double-slash-comments': null,
-    'rule-empty-line-before': 'always',
   },
   ignoreFiles: ['node_modules/**/*', 'build/**/*'],
 };

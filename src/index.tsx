@@ -9,6 +9,9 @@ const GlobalStyle = createGlobalStyle`
   * {
     font-family: "Lato", "微軟正黑體", sans-serif;
   }
+  .section-fields {
+    height: 45px;
+  }
 `;
 
 ReactDOM.render(
