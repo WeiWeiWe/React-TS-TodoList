@@ -6,6 +6,9 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
+  * {
+    font-family: "Lato", "微軟正黑體", sans-serif;
+  }
 `;
 
 ReactDOM.render(

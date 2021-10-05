@@ -1,7 +1,12 @@
 import React from 'react';
+import TodoListPage from './containers/TodoListPage/index';
 
 function App() {
-  return <div>Hello World</div>;
+  return (
+    <>
+      <TodoListPage />
+    </>
+  );
 }
 
 export default App;
