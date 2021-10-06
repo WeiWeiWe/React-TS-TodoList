@@ -1,13 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Checkmark, PencilOutline, CloseOutline } from 'react-ionicons';
+import { ItemTypes } from '../types';
 
 const ListStyle = styled.section`
-  border-bottom: 1px solid #bbb;
+  height: 500px;
+  background: rgba(50, 197, 250);
   .list-fields {
+    max-height: 500px;
+    overflow: auto;
     .list-item {
       display: flex;
+      align-items: center;
       padding-top: 7px;
+      background: #fff;
+      border-bottom: 1px solid #bbb;
       .check-box {
         flex: 0 0 25px;
         height: 25px;
@@ -47,29 +54,47 @@ const ListStyle = styled.section`
         }
       }
     }
-  }
-
-  button {
-    margin-left: 5px;
+    .list-item.no-item {
+      align-items: center;
+      justify-content: center;
+      h3 {
+        color: rgba(50, 197, 250, 0.7);
+        font-size: 24px;
+      }
+    }
   }
 `;
 
-function List() {
+interface Iprops {
+  list: ItemTypes[];
+}
+
+function List({ list }: Iprops) {
   return (
-    <ListStyle className="section-fields">
+    <ListStyle>
       <ul className="list-fields">
-        <li className="list-item">
-          <span className="check-box">
-            <Checkmark cssClasses="check-btn" color={'rgba(50, 197, 250)'} />
-          </span>
-          <input type="text" />
-          <i>
-            <PencilOutline cssClasses="modify-btn" color={'rgba(50, 197, 250, 0.5)'} width="35px" height="30px" />
-          </i>
-          <i>
-            <CloseOutline cssClasses="delete-btn" color={'rgba(255, 0, 0, 0.5)'} width="35px" height="30px" />
-          </i>
-        </li>
+        {list?.length > 0 ? (
+          list.map((item) => {
+            return (
+              <li className="section-fields list-item" key={item.id}>
+                <span className="check-box">
+                  <Checkmark cssClasses="check-btn" color={'rgba(50, 197, 250)'} />
+                </span>
+                <input type="text" value={item.title} />
+                <i>
+                  <PencilOutline cssClasses="modify-btn" color={'rgba(50, 197, 250, 0.5)'} width="35px" height="30px" />
+                </i>
+                <i>
+                  <CloseOutline cssClasses="delete-btn" color={'rgba(255, 0, 0, 0.5)'} width="35px" height="30px" />
+                </i>
+              </li>
+            );
+          })
+        ) : (
+          <li className="section-fields list-item no-item">
+            <h3>No Items</h3>
+          </li>
+        )}
       </ul>
     </ListStyle>
   );

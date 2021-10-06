@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { useSelector } from '../../store/hooks';
 import Logo from '../../components/Logo';
-import Header from '../../components/Search';
+import Search from '../../components/Search';
 import Tab from '../../components/Tabs';
 import List from '../../components/List';
+import { actionCreators } from './store';
 
 const Wrapper = styled.div`
   display: flex;
@@ -31,16 +34,34 @@ const TodoListContent = styled.article`
 `;
 
 function TodoList() {
+  const inputValue = useSelector((state) => state.todo.inputValue);
+  const list = useSelector((state) => state.todo.list);
+  const dispatch = useDispatch();
+
+  const changeInputValue = (value: string) => {
+    dispatch(actionCreators.changeInputValueActionCreator(value));
+  };
+
+  const addTodoList = () => {
+    if (inputValue) {
+      const item = {
+        id: new Date().getTime().toString(),
+        title: inputValue,
+      };
+      dispatch(actionCreators.addTodoListActionCreator(item));
+    }
+  };
+
   return (
     <Wrapper>
       <TodoListContainer>
         <TodoListHeader>
           <Logo />
-          <Header />
+          <Search inputValue={inputValue} changeInputValue={changeInputValue} addTodoList={addTodoList} />
         </TodoListHeader>
         <TodoListContent>
           <Tab />
-          <List />
+          <List list={list} />
         </TodoListContent>
       </TodoListContainer>
     </Wrapper>
