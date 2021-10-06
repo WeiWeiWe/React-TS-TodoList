@@ -1,2 +1,3 @@
 export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
 export const ADD_TODO_LIST = 'ADD_TODO_LIST';
+export const DELETE_TODO_LIST = 'DELETE_TODO_LIST';

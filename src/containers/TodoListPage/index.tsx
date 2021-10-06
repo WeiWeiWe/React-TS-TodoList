@@ -52,6 +52,10 @@ function TodoList() {
     }
   };
 
+  const deleteTodoList = (index: number) => {
+    dispatch(actionCreators.deleteTodoListActionCreator(index));
+  };
+
   return (
     <Wrapper>
       <TodoListContainer>
@@ -61,7 +65,7 @@ function TodoList() {
         </TodoListHeader>
         <TodoListContent>
           <Tab />
-          <List list={list} />
+          <List list={list} deleteTodoList={deleteTodoList} />
         </TodoListContent>
       </TodoListContainer>
     </Wrapper>

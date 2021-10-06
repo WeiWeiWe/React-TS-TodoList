@@ -67,14 +67,15 @@ const ListStyle = styled.section`
 
 interface Iprops {
   list: ItemTypes[];
+  deleteTodoList: (index: number) => void;
 }
 
-function List({ list }: Iprops) {
+function List({ list, deleteTodoList }: Iprops) {
   return (
     <ListStyle>
       <ul className="list-fields">
         {list?.length > 0 ? (
-          list.map((item) => {
+          list.map((item, index) => {
             return (
               <li className="section-fields list-item" key={item.id}>
                 <span className="check-box">
@@ -85,7 +86,13 @@ function List({ list }: Iprops) {
                   <PencilOutline cssClasses="modify-btn" color={'rgba(50, 197, 250, 0.5)'} width="35px" height="30px" />
                 </i>
                 <i>
-                  <CloseOutline cssClasses="delete-btn" color={'rgba(255, 0, 0, 0.5)'} width="35px" height="30px" />
+                  <CloseOutline
+                    cssClasses="delete-btn"
+                    color={'rgba(255, 0, 0, 0.5)'}
+                    width="35px"
+                    height="30px"
+                    onClick={() => deleteTodoList(index)}
+                  />
                 </i>
               </li>
             );

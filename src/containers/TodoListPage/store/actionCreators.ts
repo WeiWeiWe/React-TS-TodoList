@@ -11,7 +11,12 @@ interface AddTodoListAction {
   item: ItemTypes;
 }
 
-export type TodoListActionTypes = ChangeInputValueAction | AddTodoListAction;
+interface DeleteTodoListAction {
+  type: typeof constants.DELETE_TODO_LIST;
+  index: number;
+}
+
+export type TodoListActionTypes = ChangeInputValueAction | AddTodoListAction | DeleteTodoListAction;
 
 export const changeInputValueActionCreator = (value: string): ChangeInputValueAction => {
   return {
@@ -24,5 +29,12 @@ export const addTodoListActionCreator = (item: ItemTypes): AddTodoListAction => 
   return {
     type: constants.ADD_TODO_LIST,
     item,
+  };
+};
+
+export const deleteTodoListActionCreator = (index: number): DeleteTodoListAction => {
+  return {
+    type: constants.DELETE_TODO_LIST,
+    index,
   };
 };

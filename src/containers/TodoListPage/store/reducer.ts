@@ -25,6 +25,12 @@ export default (state = defaultState, action: actionCreators.TodoListActionTypes
         inputValue: '',
         list: [...state.list, action.item],
       };
+    case constants.DELETE_TODO_LIST:
+      const newList = state.list.filter((item, index) => index !== action.index);
+      return {
+        ...state,
+        list: newList,
+      };
     default:
       return state;
   }
