@@ -31,6 +31,11 @@ export default (state = defaultState, action: actionCreators.TodoListActionTypes
         ...state,
         list: newList,
       };
+    case constants.CHANGE_LIST_ITEM_TITLE_VALUE:
+      return {
+        ...state,
+        list: state.list.map((item) => (item.id === action.id ? { ...item, title: action.value } : item)),
+      };
     default:
       return state;
   }

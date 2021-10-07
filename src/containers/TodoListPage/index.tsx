@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { useSelector } from '../../store/hooks';
@@ -7,6 +7,7 @@ import Search from '../../components/Search';
 import Tab from '../../components/Tabs';
 import List from '../../components/List';
 import { actionCreators } from './store';
+import { InputArrayRefType } from '../../types/index';
 
 const Wrapper = styled.div`
   display: flex;
@@ -38,6 +39,8 @@ function TodoList() {
   const list = useSelector((state) => state.todo.list);
   const dispatch = useDispatch();
 
+  const inputArrayRef = useRef<InputArrayRefType[]>([]);
+
   const changeInputValue = (value: string) => {
     dispatch(actionCreators.changeInputValueActionCreator(value));
   };
@@ -52,8 +55,34 @@ function TodoList() {
     }
   };
 
-  const deleteTodoList = (index: number) => {
+  const deleteTodoList = (index: number, id: string) => {
+    if (inputArrayRef.current?.length > 0) {
+      inputArrayRef.current = inputArrayRef.current.filter((item) => item.id !== id);
+    }
     dispatch(actionCreators.deleteTodoListActionCreator(index));
+  };
+
+  const switchModifyStatus = (id: string) => {
+    if (inputArrayRef.current?.length > 0) {
+      inputArrayRef.current.forEach((item) => {
+        if (item.id === id) {
+          item.element.disabled = false;
+          item.element.focus();
+        }
+      });
+    }
+  };
+
+  const InputBlur = () => {
+    if (inputArrayRef.current?.length > 0) {
+      inputArrayRef.current.forEach((item) => {
+        item.element.disabled = true;
+      });
+    }
+  };
+
+  const changeTitleInputValue = (value: string, id: string) => {
+    dispatch(actionCreators.ChangeListItemTitleValueActionCreator(value, id));
   };
 
   return (
@@ -65,7 +94,14 @@ function TodoList() {
         </TodoListHeader>
         <TodoListContent>
           <Tab />
-          <List list={list} deleteTodoList={deleteTodoList} />
+          <List
+            list={list}
+            deleteTodoList={deleteTodoList}
+            switchModifyStatus={switchModifyStatus}
+            changeTitleInputValue={changeTitleInputValue}
+            inputArrayRef={inputArrayRef}
+            InputBlur={InputBlur}
+          />
         </TodoListContent>
       </TodoListContainer>
     </Wrapper>

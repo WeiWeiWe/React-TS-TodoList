@@ -16,7 +16,17 @@ interface DeleteTodoListAction {
   index: number;
 }
 
-export type TodoListActionTypes = ChangeInputValueAction | AddTodoListAction | DeleteTodoListAction;
+interface ChangeListItemTitleValueAction {
+  type: typeof constants.CHANGE_LIST_ITEM_TITLE_VALUE;
+  value: string;
+  id: string;
+}
+
+export type TodoListActionTypes =
+  | ChangeInputValueAction
+  | AddTodoListAction
+  | DeleteTodoListAction
+  | ChangeListItemTitleValueAction;
 
 export const changeInputValueActionCreator = (value: string): ChangeInputValueAction => {
   return {
@@ -36,5 +46,13 @@ export const deleteTodoListActionCreator = (index: number): DeleteTodoListAction
   return {
     type: constants.DELETE_TODO_LIST,
     index,
+  };
+};
+
+export const ChangeListItemTitleValueActionCreator = (value: string, id: string): ChangeListItemTitleValueAction => {
+  return {
+    type: constants.CHANGE_LIST_ITEM_TITLE_VALUE,
+    value,
+    id,
   };
 };

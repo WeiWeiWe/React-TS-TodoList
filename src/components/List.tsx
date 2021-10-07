@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Checkmark, PencilOutline, CloseOutline } from 'react-ionicons';
-import { ItemTypes } from '../types';
+import { ItemTypes, InputArrayRefType } from '../types';
 
 const ListStyle = styled.section`
   height: 500px;
@@ -35,7 +35,9 @@ const ListStyle = styled.section`
       input {
         flex: 1;
         margin-left: 15px;
+        color: #000;
         font-size: 18px;
+        background: #fff;
         border: none;
         outline: none;
       }
@@ -67,10 +69,14 @@ const ListStyle = styled.section`
 
 interface Iprops {
   list: ItemTypes[];
-  deleteTodoList: (index: number) => void;
+  deleteTodoList: (index: number, id: string) => void;
+  switchModifyStatus: (id: string) => void;
+  changeTitleInputValue: (value: string, id: string) => void;
+  inputArrayRef: { current: InputArrayRefType[] };
+  InputBlur: () => void;
 }
 
-function List({ list, deleteTodoList }: Iprops) {
+function List({ list, deleteTodoList, switchModifyStatus, changeTitleInputValue, inputArrayRef, InputBlur }: Iprops) {
   return (
     <ListStyle>
       <ul className="list-fields">
@@ -81,9 +87,28 @@ function List({ list, deleteTodoList }: Iprops) {
                 <span className="check-box">
                   <Checkmark cssClasses="check-btn" color={'rgba(50, 197, 250)'} />
                 </span>
-                <input type="text" value={item.title} />
+                <input
+                  type="text"
+                  value={item.title}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeTitleInputValue(e.target.value, item.id)}
+                  onBlur={InputBlur}
+                  ref={(element) => {
+                    if (element) {
+                      inputArrayRef.current[index] = {
+                        id: item.id,
+                        element,
+                      };
+                    }
+                  }}
+                />
                 <i>
-                  <PencilOutline cssClasses="modify-btn" color={'rgba(50, 197, 250, 0.5)'} width="35px" height="30px" />
+                  <PencilOutline
+                    cssClasses="modify-btn"
+                    color={'rgba(50, 197, 250, 0.5)'}
+                    width="35px"
+                    height="30px"
+                    onClick={() => switchModifyStatus(item.id)}
+                  />
                 </i>
                 <i>
                   <CloseOutline
@@ -91,7 +116,7 @@ function List({ list, deleteTodoList }: Iprops) {
                     color={'rgba(255, 0, 0, 0.5)'}
                     width="35px"
                     height="30px"
-                    onClick={() => deleteTodoList(index)}
+                    onClick={() => deleteTodoList(index, item.id)}
                   />
                 </i>
               </li>
