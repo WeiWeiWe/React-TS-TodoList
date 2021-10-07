@@ -1,15 +1,17 @@
 import * as constants from './constants';
 import * as actionCreators from './actionCreators';
-import { ItemTypes } from '../../../types';
+import { ItemTypes, EnumItemProcessTypes } from '../../../types';
 
 export interface defaultStateTypes {
   inputValue: string;
   list: ItemTypes[];
+  tabStatus: EnumItemProcessTypes;
 }
 
 const defaultState: defaultStateTypes = {
   inputValue: '',
   list: [],
+  tabStatus: EnumItemProcessTypes.All,
 };
 
 export default (state = defaultState, action: actionCreators.TodoListActionTypes) => {
@@ -35,6 +37,16 @@ export default (state = defaultState, action: actionCreators.TodoListActionTypes
       return {
         ...state,
         list: state.list.map((item) => (item.id === action.id ? { ...item, title: action.value } : item)),
+      };
+    case constants.CHANGE_PROCESS_STATUS:
+      return {
+        ...state,
+        list: state.list.map((item) => (item.id === action.id ? { ...item, process: action.process } : item)),
+      };
+    case constants.CHANGE_TAB_STATUS:
+      return {
+        ...state,
+        tabStatus: action.status,
       };
     default:
       return state;

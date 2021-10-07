@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Checkmark, PencilOutline, CloseOutline } from 'react-ionicons';
-import { ItemTypes, InputArrayRefType } from '../types';
+import { ItemTypes, InputArrayRefType, EnumItemProcessTypes } from '../types';
 
 const ListStyle = styled.section`
   height: 500px;
@@ -31,6 +31,10 @@ const ListStyle = styled.section`
             color: rgba(50, 197, 250, 0.5);
           }
         }
+
+        .check-btn.done {
+          display: block;
+        }
       }
       input {
         flex: 1;
@@ -40,6 +44,9 @@ const ListStyle = styled.section`
         background: #fff;
         border: none;
         outline: none;
+      }
+      .line-through {
+        text-decoration: line-through;
       }
       i {
         flex: 0 0 25px;
@@ -74,20 +81,62 @@ interface Iprops {
   changeTitleInputValue: (value: string, id: string) => void;
   inputArrayRef: { current: InputArrayRefType[] };
   InputBlur: () => void;
+  changeProcessStatus: (item: ItemTypes) => void;
+  tabStatus: EnumItemProcessTypes;
 }
 
-function List({ list, deleteTodoList, switchModifyStatus, changeTitleInputValue, inputArrayRef, InputBlur }: Iprops) {
+function List({
+  list,
+  deleteTodoList,
+  switchModifyStatus,
+  changeTitleInputValue,
+  inputArrayRef,
+  InputBlur,
+  changeProcessStatus,
+  tabStatus,
+}: Iprops) {
+  const filterTabList =
+    list?.length > 0
+      ? list.filter((item) => {
+          console.log(item);
+          if (tabStatus === EnumItemProcessTypes.All) {
+            return item;
+          } else {
+            return item.process === tabStatus;
+          }
+        })
+      : [];
+
+  const promptTag = () => {
+    if (list?.length > 0) {
+      if (tabStatus === EnumItemProcessTypes.DONE) {
+        return <h3>No Done Items</h3>;
+      } else if (tabStatus === EnumItemProcessTypes.ACTIVE) {
+        return <h3>No Active Items</h3>;
+      } else {
+        return <h3>No Items</h3>;
+      }
+    } else {
+      return <h3>No Items</h3>;
+    }
+  };
+
   return (
     <ListStyle>
       <ul className="list-fields">
-        {list?.length > 0 ? (
-          list.map((item, index) => {
+        {filterTabList?.length > 0 ? (
+          filterTabList.map((item, index) => {
             return (
               <li className="section-fields list-item" key={item.id}>
                 <span className="check-box">
-                  <Checkmark cssClasses="check-btn" color={'rgba(50, 197, 250)'} />
+                  <Checkmark
+                    cssClasses={item.process === EnumItemProcessTypes.DONE ? 'check-btn done' : 'check-btn'}
+                    color={'rgba(50, 197, 250)'}
+                    onClick={() => changeProcessStatus(item)}
+                  />
                 </span>
                 <input
+                  className={item.process === EnumItemProcessTypes.DONE ? 'line-through' : ''}
                   type="text"
                   value={item.title}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeTitleInputValue(e.target.value, item.id)}
@@ -123,9 +172,7 @@ function List({ list, deleteTodoList, switchModifyStatus, changeTitleInputValue,
             );
           })
         ) : (
-          <li className="section-fields list-item no-item">
-            <h3>No Items</h3>
-          </li>
+          <li className="section-fields list-item no-item">{promptTag()}</li>
         )}
       </ul>
     </ListStyle>

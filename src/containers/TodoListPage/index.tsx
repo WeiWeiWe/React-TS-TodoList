@@ -7,7 +7,7 @@ import Search from '../../components/Search';
 import Tab from '../../components/Tabs';
 import List from '../../components/List';
 import { actionCreators } from './store';
-import { InputArrayRefType } from '../../types/index';
+import { ItemTypes, InputArrayRefType, EnumItemProcessTypes } from '../../types/index';
 
 const Wrapper = styled.div`
   display: flex;
@@ -37,6 +37,7 @@ const TodoListContent = styled.article`
 function TodoList() {
   const inputValue = useSelector((state) => state.todo.inputValue);
   const list = useSelector((state) => state.todo.list);
+  const tabStatus = useSelector((state) => state.todo.tabStatus);
   const dispatch = useDispatch();
 
   const inputArrayRef = useRef<InputArrayRefType[]>([]);
@@ -50,6 +51,7 @@ function TodoList() {
       const item = {
         id: new Date().getTime().toString(),
         title: inputValue,
+        process: EnumItemProcessTypes.ACTIVE,
       };
       dispatch(actionCreators.addTodoListActionCreator(item));
     }
@@ -85,6 +87,18 @@ function TodoList() {
     dispatch(actionCreators.ChangeListItemTitleValueActionCreator(value, id));
   };
 
+  const changeProcessStatus = (item: ItemTypes) => {
+    const { ACTIVE, DONE } = EnumItemProcessTypes;
+    const switchProcess = item.process === ACTIVE ? DONE : ACTIVE;
+    dispatch(actionCreators.ChangeProcessStatusActionCreator(switchProcess, item.id));
+  };
+
+  const changeTabStatus = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const { value } = e.currentTarget;
+    const switchTabStatus = value as EnumItemProcessTypes;
+    dispatch(actionCreators.ChangeTabStatusActionCreator(switchTabStatus));
+  };
+
   return (
     <Wrapper>
       <TodoListContainer>
@@ -93,7 +107,7 @@ function TodoList() {
           <Search inputValue={inputValue} changeInputValue={changeInputValue} addTodoList={addTodoList} />
         </TodoListHeader>
         <TodoListContent>
-          <Tab />
+          <Tab changeTabStatus={changeTabStatus} list={list} tabStatus={tabStatus} />
           <List
             list={list}
             deleteTodoList={deleteTodoList}
@@ -101,6 +115,8 @@ function TodoList() {
             changeTitleInputValue={changeTitleInputValue}
             inputArrayRef={inputArrayRef}
             InputBlur={InputBlur}
+            changeProcessStatus={changeProcessStatus}
+            tabStatus={tabStatus}
           />
         </TodoListContent>
       </TodoListContainer>
