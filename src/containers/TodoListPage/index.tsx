@@ -57,6 +57,17 @@ function TodoList() {
     }
   };
 
+  const keyUpTodoList = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (inputValue && e.key === 'Enter') {
+      const item = {
+        id: new Date().getTime().toString(),
+        title: inputValue,
+        process: EnumItemProcessTypes.ACTIVE,
+      };
+      dispatch(actionCreators.addTodoListActionCreator(item));
+    }
+  };
+
   const deleteTodoList = (index: number, id: string) => {
     if (inputArrayRef.current?.length > 0) {
       inputArrayRef.current = inputArrayRef.current.filter((item) => item.id !== id);
@@ -87,6 +98,16 @@ function TodoList() {
     dispatch(actionCreators.ChangeListItemTitleValueActionCreator(value, id));
   };
 
+  const keyUpTitleInputValueDone = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      if (inputArrayRef.current?.length > 0) {
+        inputArrayRef.current.forEach((item) => {
+          item.element.disabled = true;
+        });
+      }
+    }
+  };
+
   const changeProcessStatus = (item: ItemTypes) => {
     const { ACTIVE, DONE } = EnumItemProcessTypes;
     const switchProcess = item.process === ACTIVE ? DONE : ACTIVE;
@@ -104,7 +125,12 @@ function TodoList() {
       <TodoListContainer>
         <TodoListHeader>
           <Logo />
-          <Search inputValue={inputValue} changeInputValue={changeInputValue} addTodoList={addTodoList} />
+          <Search
+            inputValue={inputValue}
+            changeInputValue={changeInputValue}
+            addTodoList={addTodoList}
+            keyUpTodoList={keyUpTodoList}
+          />
         </TodoListHeader>
         <TodoListContent>
           <Tab changeTabStatus={changeTabStatus} list={list} tabStatus={tabStatus} />
@@ -114,6 +140,7 @@ function TodoList() {
             switchModifyStatus={switchModifyStatus}
             changeTitleInputValue={changeTitleInputValue}
             inputArrayRef={inputArrayRef}
+            keyUpTitleInputValueDone={keyUpTitleInputValueDone}
             InputBlur={InputBlur}
             changeProcessStatus={changeProcessStatus}
             tabStatus={tabStatus}

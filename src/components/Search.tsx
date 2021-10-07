@@ -26,9 +26,10 @@ interface Iprops {
   inputValue: string;
   changeInputValue: (value: string) => void;
   addTodoList: () => void;
+  keyUpTodoList: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-function Header({ inputValue, changeInputValue, addTodoList }: Iprops) {
+function Header({ inputValue, changeInputValue, addTodoList, keyUpTodoList }: Iprops) {
   return (
     <SearchStyle className="section-fields">
       <div className="search-fields">
@@ -39,6 +40,7 @@ function Header({ inputValue, changeInputValue, addTodoList }: Iprops) {
           type="text"
           placeholder="Enter your next task"
           value={inputValue}
+          onKeyUp={keyUpTodoList}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeInputValue(e.target.value)}
         />
         <i>

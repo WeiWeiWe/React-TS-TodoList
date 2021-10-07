@@ -79,6 +79,7 @@ interface Iprops {
   deleteTodoList: (index: number, id: string) => void;
   switchModifyStatus: (id: string) => void;
   changeTitleInputValue: (value: string, id: string) => void;
+  keyUpTitleInputValueDone: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   inputArrayRef: { current: InputArrayRefType[] };
   InputBlur: () => void;
   changeProcessStatus: (item: ItemTypes) => void;
@@ -91,6 +92,7 @@ function List({
   switchModifyStatus,
   changeTitleInputValue,
   inputArrayRef,
+  keyUpTitleInputValueDone,
   InputBlur,
   changeProcessStatus,
   tabStatus,
@@ -137,9 +139,11 @@ function List({
                 </span>
                 <input
                   className={item.process === EnumItemProcessTypes.DONE ? 'line-through' : ''}
+                  disabled
                   type="text"
                   value={item.title}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeTitleInputValue(e.target.value, item.id)}
+                  onKeyUp={keyUpTitleInputValueDone}
                   onBlur={InputBlur}
                   ref={(element) => {
                     if (element) {
