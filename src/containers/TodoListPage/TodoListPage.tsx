@@ -1,40 +1,12 @@
 import React, { useRef } from 'react';
-import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
 import { useSelector } from '../../store/hooks';
-import Logo from '../../components/Logo';
-import Search from '../../components/Search';
-import Tab from '../../components/Tabs';
-import List from '../../components/List';
+import { useDispatch } from 'react-redux';
+import { Wrapper, TodoListContainer, TodoListHeader, TodoListContent } from './TodoListPageStyle';
+import { Logo, Search, Tabs, List } from '../../components';
 import { actionCreators } from './store';
-import { ItemTypes, InputArrayRefType, EnumItemProcessTypes } from '../../types/index';
+import { ItemTypes, InputArrayRefType, EnumItemProcessTypes } from '../../types';
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
-  background: rgb(50, 197, 250);
-`;
-
-const TodoListContainer = styled.div`
-  width: 100%;
-  max-width: 576px;
-  text-align: center;
-  background: rgb(50, 197, 250);
-`;
-
-const TodoListHeader = styled.header`
-  margin-bottom: 50px;
-  background: #fff;
-`;
-
-const TodoListContent = styled.article`
-  background: #fff;
-`;
-
-function TodoList() {
+export function TodoListPage() {
   const inputValue = useSelector((state) => state.todo.inputValue);
   const list = useSelector((state) => state.todo.list);
   const tabStatus = useSelector((state) => state.todo.tabStatus);
@@ -133,7 +105,7 @@ function TodoList() {
           />
         </TodoListHeader>
         <TodoListContent>
-          <Tab changeTabStatus={changeTabStatus} list={list} tabStatus={tabStatus} />
+          <Tabs changeTabStatus={changeTabStatus} list={list} tabStatus={tabStatus} />
           <List
             list={list}
             deleteTodoList={deleteTodoList}
@@ -150,5 +122,3 @@ function TodoList() {
     </Wrapper>
   );
 }
-
-export default TodoList;

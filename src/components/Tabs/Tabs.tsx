@@ -1,40 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import { EnumItemProcessTypes, ItemTypes } from '../types';
-
-const TabsStyle = styled.section`
-  border-bottom: 1px solid #bbb;
-  .tab-fields {
-    display: flex;
-    justify-content: flex-end;
-    height: 100%;
-    button {
-      display: flex;
-      align-items: center;
-      margin: 10px;
-      padding: 10px;
-      background: #fff;
-      border: none;
-      cursor: pointer;
-
-      &:hover {
-        background: rgba(50, 197, 250, 0.2);
-      }
-      h2 {
-        color: rgb(50, 197, 250);
-        font-weight: bold;
-        font-size: 18px;
-      }
-    }
-    .isClick {
-      background: rgb(50, 197, 250, 0.5);
-
-      h2 {
-        color: #fff;
-      }
-    }
-  }
-`;
+import { TabsStyle } from './TabStyle';
+import { EnumItemProcessTypes, ItemTypes } from '../../types';
 
 interface Iprops {
   changeTabStatus: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -42,7 +8,7 @@ interface Iprops {
   tabStatus: EnumItemProcessTypes;
 }
 
-function Tabs({ changeTabStatus, list, tabStatus }: Iprops) {
+export function Tabs({ changeTabStatus, list, tabStatus }: Iprops) {
   return (
     <TabsStyle className="section-fields">
       <nav className="tab-fields">
@@ -71,5 +37,3 @@ function Tabs({ changeTabStatus, list, tabStatus }: Iprops) {
     </TabsStyle>
   );
 }
-
-export default Tabs;
