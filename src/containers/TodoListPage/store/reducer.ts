@@ -28,10 +28,14 @@ export default (state = defaultState, action: actionCreators.TodoListActionTypes
         list: [...state.list, action.item],
       };
     case constants.DELETE_TODO_LIST:
-      const newList = state.list.filter((item, index) => index !== action.index);
       return {
         ...state,
-        list: newList,
+        list: state.list.filter((item) => item.id !== action.id),
+      };
+    case constants.SWITCH_MODIFY_STATUS:
+      return {
+        ...state,
+        list: state.list.map((item) => (item.id === action.id ? { ...item, isModify: action.status } : item)),
       };
     case constants.CHANGE_LIST_ITEM_TITLE_VALUE:
       return {

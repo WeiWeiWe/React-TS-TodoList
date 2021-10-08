@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useSelector } from '../../store/hooks';
 import { useDispatch } from 'react-redux';
 import { Wrapper, TodoListContainer, TodoListHeader, TodoListContent } from './TodoListPageStyle';
-import { Logo, Search, Tabs, List } from '../../components';
+import { Logo, Form, Tabs, List } from '../../components';
 import { actionCreators } from './store';
 import { ItemTypes, InputArrayRefType, EnumItemProcessTypes } from '../../types';
 
@@ -14,8 +14,8 @@ export function TodoListPage() {
 
   const inputArrayRef = useRef<InputArrayRefType[]>([]);
 
-  const changeInputValue = (value: string) => {
-    dispatch(actionCreators.changeInputValueActionCreator(value));
+  const changeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(actionCreators.changeInputValueActionCreator(e.target.value));
   };
 
   const addTodoList = () => {
@@ -24,6 +24,7 @@ export function TodoListPage() {
         id: new Date().getTime().toString(),
         title: inputValue,
         process: EnumItemProcessTypes.ACTIVE,
+        isModify: false,
       };
       dispatch(actionCreators.addTodoListActionCreator(item));
     }
@@ -35,48 +36,49 @@ export function TodoListPage() {
         id: new Date().getTime().toString(),
         title: inputValue,
         process: EnumItemProcessTypes.ACTIVE,
+        isModify: false,
       };
       dispatch(actionCreators.addTodoListActionCreator(item));
     }
   };
 
-  const deleteTodoList = (index: number, id: string) => {
+  const deleteTodoList = (item: ItemTypes) => {
     if (inputArrayRef.current?.length > 0) {
-      inputArrayRef.current = inputArrayRef.current.filter((item) => item.id !== id);
+      inputArrayRef.current = inputArrayRef.current.filter((refItem) => refItem.id !== item.id);
     }
-    dispatch(actionCreators.deleteTodoListActionCreator(index));
+    dispatch(actionCreators.deleteTodoListActionCreator(item.id));
   };
 
-  const switchModifyStatus = (id: string) => {
+  const switchModifyStatus = (item: ItemTypes) => {
     if (inputArrayRef.current?.length > 0) {
-      inputArrayRef.current.forEach((item) => {
-        if (item.id === id) {
-          item.element.disabled = false;
-          item.element.focus();
+      inputArrayRef.current.forEach((refItem) => {
+        if (refItem.id === item.id) {
+          refItem.element.disabled = false;
+          refItem.element.focus();
+          dispatch(actionCreators.switchModifyStatusActionCreator(true, item.id));
         }
       });
     }
   };
 
-  const InputBlur = () => {
+  const InputBlur = (item: ItemTypes) => {
     if (inputArrayRef.current?.length > 0) {
-      inputArrayRef.current.forEach((item) => {
-        item.element.disabled = true;
+      inputArrayRef.current.forEach((refItem) => {
+        refItem.element.disabled = true;
+        dispatch(actionCreators.switchModifyStatusActionCreator(false, item.id));
       });
     }
   };
 
-  const changeTitleInputValue = (value: string, id: string) => {
-    dispatch(actionCreators.ChangeListItemTitleValueActionCreator(value, id));
+  const changeTitleInputValue = (e: React.ChangeEvent<HTMLInputElement>, item: ItemTypes) => {
+    dispatch(actionCreators.ChangeListItemTitleValueActionCreator(e.target.value, item.id));
   };
 
   const keyUpTitleInputValueDone = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      if (inputArrayRef.current?.length > 0) {
-        inputArrayRef.current.forEach((item) => {
-          item.element.disabled = true;
-        });
-      }
+    if (e.key === 'Enter' && inputArrayRef.current?.length > 0) {
+      inputArrayRef.current.forEach((refItem) => {
+        refItem.element.disabled = true;
+      });
     }
   };
 
@@ -97,7 +99,7 @@ export function TodoListPage() {
       <TodoListContainer>
         <TodoListHeader>
           <Logo />
-          <Search
+          <Form
             inputValue={inputValue}
             changeInputValue={changeInputValue}
             addTodoList={addTodoList}

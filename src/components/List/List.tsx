@@ -5,12 +5,12 @@ import { ItemTypes, InputArrayRefType, EnumItemProcessTypes } from '../../types'
 
 interface Iprops {
   list: ItemTypes[];
-  deleteTodoList: (index: number, id: string) => void;
-  switchModifyStatus: (id: string) => void;
-  changeTitleInputValue: (value: string, id: string) => void;
+  deleteTodoList: (item: ItemTypes) => void;
+  switchModifyStatus: (item: ItemTypes) => void;
+  InputBlur: (item: ItemTypes) => void;
+  changeTitleInputValue: (e: React.ChangeEvent<HTMLInputElement>, item: ItemTypes) => void;
   keyUpTitleInputValueDone: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   inputArrayRef: { current: InputArrayRefType[] };
-  InputBlur: () => void;
   changeProcessStatus: (item: ItemTypes) => void;
   tabStatus: EnumItemProcessTypes;
 }
@@ -19,17 +19,16 @@ export function List({
   list,
   deleteTodoList,
   switchModifyStatus,
+  InputBlur,
   changeTitleInputValue,
   inputArrayRef,
   keyUpTitleInputValueDone,
-  InputBlur,
   changeProcessStatus,
   tabStatus,
 }: Iprops) {
   const filterTabList =
     list?.length > 0
       ? list.filter((item) => {
-          console.log(item);
           if (tabStatus === EnumItemProcessTypes.All) {
             return item;
           } else {
@@ -58,22 +57,21 @@ export function List({
         {filterTabList?.length > 0 ? (
           filterTabList.map((item, index) => {
             return (
-              <li className="section-fields list-item" key={item.id}>
-                <span className="check-box">
+              <li className="global-block-fields list-item" key={item.id}>
+                <span className="list-item-check-box" onClick={() => changeProcessStatus(item)}>
                   <Checkmark
-                    cssClasses={item.process === EnumItemProcessTypes.DONE ? 'check-btn done' : 'check-btn'}
-                    color={'rgba(50, 197, 250)'}
-                    onClick={() => changeProcessStatus(item)}
+                    cssClasses={item.process === EnumItemProcessTypes.DONE ? 'check-box-btn done' : 'check-box-btn'}
+                    color={'rgb(50, 197, 250)'}
                   />
                 </span>
                 <input
-                  className={item.process === EnumItemProcessTypes.DONE ? 'line-through' : ''}
+                  className={item.process === EnumItemProcessTypes.DONE ? 'list-item-input done' : 'list-item-input'}
                   disabled
                   type="text"
                   value={item.title}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeTitleInputValue(e.target.value, item.id)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeTitleInputValue(e, item)}
                   onKeyUp={keyUpTitleInputValueDone}
-                  onBlur={InputBlur}
+                  onBlur={() => InputBlur(item)}
                   ref={(element) => {
                     if (element) {
                       inputArrayRef.current[index] = {
@@ -83,29 +81,22 @@ export function List({
                     }
                   }}
                 />
-                <i>
+                <i className="list-item-modify-icon" onClick={() => switchModifyStatus(item)}>
                   <PencilOutline
-                    cssClasses="modify-btn"
-                    color={'rgba(50, 197, 250, 0.5)'}
+                    cssClasses={item.isModify ? 'modify-btn isClick' : 'modify-btn'}
+                    color={'rgb(50, 197, 250)'}
                     width="35px"
                     height="30px"
-                    onClick={() => switchModifyStatus(item.id)}
                   />
                 </i>
-                <i>
-                  <CloseOutline
-                    cssClasses="delete-btn"
-                    color={'rgba(255, 0, 0, 0.5)'}
-                    width="35px"
-                    height="30px"
-                    onClick={() => deleteTodoList(index, item.id)}
-                  />
+                <i className="list-item-delete-icon" onClick={() => deleteTodoList(item)}>
+                  <CloseOutline cssClasses="delete-btn" color={'rgba(255, 0, 0, 0.9)'} width="35px" height="30px" />
                 </i>
               </li>
             );
           })
         ) : (
-          <li className="section-fields list-item no-item">{promptTag()}</li>
+          <li className="global-block-fields list-item prompt-tag">{promptTag()}</li>
         )}
       </ul>
     </ListStyle>

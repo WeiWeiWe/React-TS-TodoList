@@ -13,7 +13,13 @@ interface AddTodoListAction {
 
 interface DeleteTodoListAction {
   type: typeof constants.DELETE_TODO_LIST;
-  index: number;
+  id: string;
+}
+
+interface SwitchModifyStatusAction {
+  type: typeof constants.SWITCH_MODIFY_STATUS;
+  status: boolean;
+  id: string;
 }
 
 interface ChangeListItemTitleValueAction {
@@ -37,6 +43,7 @@ export type TodoListActionTypes =
   | ChangeInputValueAction
   | AddTodoListAction
   | DeleteTodoListAction
+  | SwitchModifyStatusAction
   | ChangeListItemTitleValueAction
   | ChangeProcessStatusAction
   | ChangeTabStatusAction;
@@ -55,10 +62,19 @@ export const addTodoListActionCreator = (item: ItemTypes): AddTodoListAction => 
   };
 };
 
-export const deleteTodoListActionCreator = (index: number): DeleteTodoListAction => {
+export const deleteTodoListActionCreator = (id: string): DeleteTodoListAction => {
   return {
     type: constants.DELETE_TODO_LIST,
-    index,
+    id,
+  };
+};
+
+export const switchModifyStatusActionCreator = (status: boolean, id: string): SwitchModifyStatusAction => {
+  console.log(status, id);
+  return {
+    type: constants.SWITCH_MODIFY_STATUS,
+    status,
+    id,
   };
 };
 

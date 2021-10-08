@@ -11,8 +11,19 @@ const GlobalStyle = createGlobalStyle`
   * {
     font-family: "Lato", "微軟正黑體", sans-serif;
   }
-  .section-fields {
+  .global-block-fields {
     height: 50px;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(204, 204, 204);
+    border-radius: 1em;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: rgb(238, 238, 238);
   }
 `;
 

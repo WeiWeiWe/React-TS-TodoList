@@ -14,6 +14,10 @@ export const TodoListContainer = styled.div`
   max-width: 576px;
   text-align: center;
   background: rgb(50, 197, 250);
+
+  @media screen and (max-width: 576px) {
+    height: 100%;
+  }
 `;
 
 export const TodoListHeader = styled.header`

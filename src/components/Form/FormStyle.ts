@@ -1,21 +1,25 @@
 import styled from 'styled-components';
 
-export const SearchStyle = styled.section`
-  .search-fields {
+export const FormStyle = styled.section`
+  .form-fields {
     display: flex;
-    input {
+
+    .from-input {
       flex: 1;
       font-size: 18px;
       border: none;
       outline: none;
     }
-    i {
+
+    .from-todo-icon {
       flex: 0 0 25px;
       padding: 9px;
+    }
 
-      .add-btn {
-        cursor: pointer;
-      }
+    .from-add-icon {
+      flex: 0 0 25px;
+      padding: 9px;
+      cursor: pointer;
     }
   }
 `;
