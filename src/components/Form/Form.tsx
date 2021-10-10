@@ -2,14 +2,14 @@ import React from 'react';
 import { FormStyle } from './FormStyle';
 import { Reader, AddCircleSharp } from 'react-ionicons';
 
-interface Iprops {
+export interface FormIprops {
   inputValue: string;
   changeInputValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
   addTodoList: () => void;
   keyUpTodoList: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-export function Form({ inputValue, changeInputValue, addTodoList, keyUpTodoList }: Iprops) {
+export function Form({ inputValue, changeInputValue, addTodoList, keyUpTodoList }: FormIprops) {
   return (
     <FormStyle>
       <div className="global-block-fields form-fields">
@@ -23,8 +23,9 @@ export function Form({ inputValue, changeInputValue, addTodoList, keyUpTodoList 
           value={inputValue}
           onChange={changeInputValue}
           onKeyUp={keyUpTodoList}
+          data-testid="form-input"
         />
-        <i className="from-add-icon" onClick={addTodoList}>
+        <i className="from-add-icon" onClick={addTodoList} data-testid="add-btn">
           <AddCircleSharp cssClasses="add-btn" color={'rgba(50, 197, 250)'} width="30px" height="30px" />
         </i>
       </div>
