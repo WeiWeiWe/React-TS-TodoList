@@ -2,13 +2,13 @@ import React from 'react';
 import { TabsStyle } from './TabStyle';
 import { EnumItemProcessTypes, ItemTypes } from '../../types';
 
-interface Iprops {
+export interface TabsIprops {
   changeTabStatus: (e: React.MouseEvent<HTMLButtonElement>) => void;
   list: ItemTypes[];
   tabStatus: EnumItemProcessTypes;
 }
 
-export function Tabs({ changeTabStatus, list, tabStatus }: Iprops) {
+export function Tabs({ changeTabStatus, list, tabStatus }: TabsIprops) {
   return (
     <TabsStyle>
       <nav className="global-block-fields tabs-fields">
@@ -22,6 +22,7 @@ export function Tabs({ changeTabStatus, list, tabStatus }: Iprops) {
           }
           value={EnumItemProcessTypes.ACTIVE}
           onClick={changeTabStatus}
+          data-testid="active-btn"
         >
           <h2>ACTIVE</h2>
         </button>
@@ -35,6 +36,7 @@ export function Tabs({ changeTabStatus, list, tabStatus }: Iprops) {
           }
           value={EnumItemProcessTypes.DONE}
           onClick={changeTabStatus}
+          data-testid="done-btn"
         >
           <h2>DONE</h2>
         </button>
@@ -48,6 +50,7 @@ export function Tabs({ changeTabStatus, list, tabStatus }: Iprops) {
           }
           value={EnumItemProcessTypes.All}
           onClick={changeTabStatus}
+          data-testid="all-btn"
         >
           <h2>ALL</h2>
         </button>
