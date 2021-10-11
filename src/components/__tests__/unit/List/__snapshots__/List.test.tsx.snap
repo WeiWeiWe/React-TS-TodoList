@@ -1,0 +1,272 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test List Component should render the component to match the snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section
+        class="sc-bdfBQB kWCrCd"
+      >
+        <ul
+          class="list-fields"
+        >
+          <li
+            class="global-block-fields list-item"
+            data-testid="list-item"
+          >
+            <span
+              class="list-item-check-box"
+              data-testid="list-item-check-box"
+            >
+              <span
+                class="sc-gsTEea dXjbGb"
+                color="rgb(50, 197, 250)"
+                height="22px"
+                rotate="0"
+                width="22px"
+              >
+                <svg
+                  class="check-box-btn"
+                  viewBox="0 0 512 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  
+                  <path
+                    d="M416 128L192 384l-96-96"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="32"
+                  />
+                </svg>
+              </span>
+            </span>
+            <input
+              class="list-item-input"
+              data-testid="list-item-input"
+              disabled=""
+              type="text"
+              value="Buy pencil"
+            />
+            <i
+              class="list-item-modify-icon"
+              data-testid="modify-btn"
+            >
+              <span
+                class="sc-gsTEea daUMzG"
+                color="rgb(50, 197, 250)"
+                height="30px"
+                rotate="0"
+                width="35px"
+              >
+                <svg
+                  class="modify-btn"
+                  viewBox="0 0 512 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  
+                  <path
+                    d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="32"
+                  />
+                </svg>
+              </span>
+            </i>
+            <i
+              class="list-item-delete-icon"
+              data-testid="delete-btn"
+            >
+              <span
+                class="sc-gsTEea bKCwHa"
+                color="rgba(255, 0, 0, 0.9)"
+                height="30px"
+                rotate="0"
+                width="35px"
+              >
+                <svg
+                  class="delete-btn"
+                  viewBox="0 0 512 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  
+                  <path
+                    d="M368 368L144 144M368 144L144 368"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="32"
+                  />
+                </svg>
+              </span>
+            </i>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="sc-bdfBQB kWCrCd"
+    >
+      <ul
+        class="list-fields"
+      >
+        <li
+          class="global-block-fields list-item"
+          data-testid="list-item"
+        >
+          <span
+            class="list-item-check-box"
+            data-testid="list-item-check-box"
+          >
+            <span
+              class="sc-gsTEea dXjbGb"
+              color="rgb(50, 197, 250)"
+              height="22px"
+              rotate="0"
+              width="22px"
+            >
+              <svg
+                class="check-box-btn"
+                viewBox="0 0 512 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                <path
+                  d="M416 128L192 384l-96-96"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="32"
+                />
+              </svg>
+            </span>
+          </span>
+          <input
+            class="list-item-input"
+            data-testid="list-item-input"
+            disabled=""
+            type="text"
+            value="Buy pencil"
+          />
+          <i
+            class="list-item-modify-icon"
+            data-testid="modify-btn"
+          >
+            <span
+              class="sc-gsTEea daUMzG"
+              color="rgb(50, 197, 250)"
+              height="30px"
+              rotate="0"
+              width="35px"
+            >
+              <svg
+                class="modify-btn"
+                viewBox="0 0 512 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                <path
+                  d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="32"
+                />
+              </svg>
+            </span>
+          </i>
+          <i
+            class="list-item-delete-icon"
+            data-testid="delete-btn"
+          >
+            <span
+              class="sc-gsTEea bKCwHa"
+              color="rgba(255, 0, 0, 0.9)"
+              height="30px"
+              rotate="0"
+              width="35px"
+            >
+              <svg
+                class="delete-btn"
+                viewBox="0 0 512 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                
+                <path
+                  d="M368 368L144 144M368 144L144 368"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="32"
+                />
+              </svg>
+            </span>
+          </i>
+        </li>
+      </ul>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

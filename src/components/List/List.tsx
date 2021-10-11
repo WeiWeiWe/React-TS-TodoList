@@ -3,7 +3,7 @@ import { ListStyle } from './ListStyle';
 import { Checkmark, PencilOutline, CloseOutline } from 'react-ionicons';
 import { ItemTypes, InputArrayRefType, EnumItemProcessTypes } from '../../types';
 
-interface Iprops {
+export interface ListIprops {
   list: ItemTypes[];
   deleteTodoList: (item: ItemTypes) => void;
   switchModifyStatus: (item: ItemTypes) => void;
@@ -25,7 +25,7 @@ export function List({
   keyUpTitleInputValueDone,
   changeProcessStatus,
   tabStatus,
-}: Iprops) {
+}: ListIprops) {
   const filterTabList =
     list?.length > 0
       ? list.filter((item) => {
@@ -57,8 +57,12 @@ export function List({
         {filterTabList?.length > 0 ? (
           filterTabList.map((item, index) => {
             return (
-              <li className="global-block-fields list-item" key={item.id}>
-                <span className="list-item-check-box" onClick={() => changeProcessStatus(item)}>
+              <li className="global-block-fields list-item" key={item.id} data-testid="list-item">
+                <span
+                  className="list-item-check-box"
+                  onClick={() => changeProcessStatus(item)}
+                  data-testid="list-item-check-box"
+                >
                   <Checkmark
                     cssClasses={item.process === EnumItemProcessTypes.DONE ? 'check-box-btn done' : 'check-box-btn'}
                     color={'rgb(50, 197, 250)'}
@@ -66,6 +70,7 @@ export function List({
                 </span>
                 <input
                   className={item.process === EnumItemProcessTypes.DONE ? 'list-item-input done' : 'list-item-input'}
+                  data-testid="list-item-input"
                   disabled
                   type="text"
                   value={item.title}
@@ -81,7 +86,7 @@ export function List({
                     }
                   }}
                 />
-                <i className="list-item-modify-icon" onClick={() => switchModifyStatus(item)}>
+                <i className="list-item-modify-icon" onClick={() => switchModifyStatus(item)} data-testid="modify-btn">
                   <PencilOutline
                     cssClasses={item.isModify ? 'modify-btn isClick' : 'modify-btn'}
                     color={'rgb(50, 197, 250)'}
@@ -89,14 +94,16 @@ export function List({
                     height="30px"
                   />
                 </i>
-                <i className="list-item-delete-icon" onClick={() => deleteTodoList(item)}>
+                <i className="list-item-delete-icon" onClick={() => deleteTodoList(item)} data-testid="delete-btn">
                   <CloseOutline cssClasses="delete-btn" color={'rgba(255, 0, 0, 0.9)'} width="35px" height="30px" />
                 </i>
               </li>
             );
           })
         ) : (
-          <li className="global-block-fields list-item prompt-tag">{promptTag()}</li>
+          <li className="global-block-fields list-item prompt-tag" data-testid="prompt-tag">
+            {promptTag()}
+          </li>
         )}
       </ul>
     </ListStyle>
