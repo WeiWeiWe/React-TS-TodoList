@@ -13,7 +13,7 @@ Object {
         >
           <button
             class="tabs-button"
-            data-testid="active-btn"
+            data-testid="tabs-active-btn"
             value="ACTIVE"
           >
             <h2>
@@ -22,7 +22,7 @@ Object {
           </button>
           <button
             class="tabs-button"
-            data-testid="done-btn"
+            data-testid="tabs-done-btn"
             value="DONE"
           >
             <h2>
@@ -31,7 +31,7 @@ Object {
           </button>
           <button
             class="tabs-button isClick"
-            data-testid="all-btn"
+            data-testid="tabs-all-btn"
             value="ALL"
           >
             <h2>
@@ -51,7 +51,7 @@ Object {
       >
         <button
           class="tabs-button"
-          data-testid="active-btn"
+          data-testid="tabs-active-btn"
           value="ACTIVE"
         >
           <h2>
@@ -60,7 +60,7 @@ Object {
         </button>
         <button
           class="tabs-button"
-          data-testid="done-btn"
+          data-testid="tabs-done-btn"
           value="DONE"
         >
           <h2>
@@ -69,7 +69,7 @@ Object {
         </button>
         <button
           class="tabs-button isClick"
-          data-testid="all-btn"
+          data-testid="tabs-all-btn"
           value="ALL"
         >
           <h2>

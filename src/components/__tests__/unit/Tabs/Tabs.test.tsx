@@ -27,7 +27,7 @@ describe('Test Tabs Component', () => {
 
   test('When user click the all button, should add isClick class name', () => {
     const { getByTestId } = render(renderComponentWithRedux({ ...testProps, tabStatus: EnumItemProcessTypes.All }));
-    const allButton = getByTestId(/all-btn/);
+    const allButton = getByTestId(/tabs-all-btn/);
 
     fireEvent.click(allButton);
     expect(testProps.changeTabStatus).toHaveBeenCalled();
@@ -36,7 +36,7 @@ describe('Test Tabs Component', () => {
 
   test('When user click the active button, should add isClick class name', () => {
     const { getByTestId } = render(renderComponentWithRedux({ ...testProps, tabStatus: EnumItemProcessTypes.ACTIVE }));
-    const activeButton = getByTestId(/active-btn/);
+    const activeButton = getByTestId(/tabs-active-btn/);
 
     fireEvent.click(activeButton);
     expect(testProps.changeTabStatus).toHaveBeenCalled();
@@ -45,7 +45,7 @@ describe('Test Tabs Component', () => {
 
   test('When user click the done button, should add isClick class name', () => {
     const { getByTestId } = render(renderComponentWithRedux({ ...testProps, tabStatus: EnumItemProcessTypes.DONE }));
-    const doneButton = getByTestId(/done-btn/);
+    const doneButton = getByTestId(/tabs-done-btn/);
 
     fireEvent.click(doneButton);
     expect(testProps.changeTabStatus).toHaveBeenCalled();

@@ -22,7 +22,7 @@ export function Tabs({ changeTabStatus, list, tabStatus }: TabsIprops) {
           }
           value={EnumItemProcessTypes.ACTIVE}
           onClick={changeTabStatus}
-          data-testid="active-btn"
+          data-testid="tabs-active-btn"
         >
           <h2>ACTIVE</h2>
         </button>
@@ -36,7 +36,7 @@ export function Tabs({ changeTabStatus, list, tabStatus }: TabsIprops) {
           }
           value={EnumItemProcessTypes.DONE}
           onClick={changeTabStatus}
-          data-testid="done-btn"
+          data-testid="tabs-done-btn"
         >
           <h2>DONE</h2>
         </button>
@@ -50,7 +50,7 @@ export function Tabs({ changeTabStatus, list, tabStatus }: TabsIprops) {
           }
           value={EnumItemProcessTypes.All}
           onClick={changeTabStatus}
-          data-testid="all-btn"
+          data-testid="tabs-all-btn"
         >
           <h2>ALL</h2>
         </button>
