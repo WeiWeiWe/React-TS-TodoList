@@ -38,6 +38,32 @@ describe('Test List Component', () => {
     expect(promptTag.innerHTML).toBe('<h3>No Items</h3>');
   });
 
+  test('should dispaly the prompt tag, if there is no active list items', () => {
+    const { getByTestId } = render(
+      renderComponentWithRedux({
+        ...testProps,
+        list: [{ id: '0', title: 'Buy pencil', process: EnumItemProcessTypes.DONE, isModify: false }],
+        tabStatus: EnumItemProcessTypes.ACTIVE,
+      }),
+    );
+    const promptTag = getByTestId(/prompt-tag/) as HTMLLIElement;
+
+    expect(promptTag.innerHTML).toBe('<h3>No Active Items</h3>');
+  });
+
+  test('should dispaly the prompt tag, if there is no done list items', () => {
+    const { getByTestId } = render(
+      renderComponentWithRedux({
+        ...testProps,
+        list: [{ id: '0', title: 'Buy pencil', process: EnumItemProcessTypes.ACTIVE, isModify: false }],
+        tabStatus: EnumItemProcessTypes.DONE,
+      }),
+    );
+    const promptTag = getByTestId(/prompt-tag/) as HTMLLIElement;
+
+    expect(promptTag.innerHTML).toBe('<h3>No Done Items</h3>');
+  });
+
   test('When user click the delete button, should trigger the deleteTodoList function', () => {
     const { getByTestId } = render(renderComponentWithRedux(testProps));
     const deleteButton = getByTestId(/delete-btn/) as HTMLElement;
@@ -70,6 +96,15 @@ describe('Test List Component', () => {
     fireEvent.keyUp(inputElem, { key: 'Enter', code: 'Enter', charCode: 13 });
 
     expect(testProps.keyUpTitleInputValueDone).toHaveBeenCalled();
+  });
+
+  test('When user blur the input element, should trigger the InputBlur function', () => {
+    const { getByTestId } = render(renderComponentWithRedux(testProps));
+    const inputElem = getByTestId(/list-item-input/) as HTMLInputElement;
+
+    fireEvent.blur(inputElem);
+
+    expect(testProps.InputBlur).toHaveBeenCalled();
   });
 
   test('When user click the check box, should trigger the changeProcessStatus function', () => {

@@ -43,12 +43,9 @@ export function List({
         return <h3>No Done Items</h3>;
       } else if (tabStatus === EnumItemProcessTypes.ACTIVE) {
         return <h3>No Active Items</h3>;
-      } else {
-        return <h3>No Items</h3>;
       }
-    } else {
-      return <h3>No Items</h3>;
     }
+    return <h3>No Items</h3>;
   };
 
   return (
