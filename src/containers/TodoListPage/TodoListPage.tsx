@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { useSelector } from '../../store/hooks';
 import { useDispatch } from 'react-redux';
+import { useSelector } from '../../store/hooks';
 import { Wrapper, TodoListContainer, TodoListHeader, TodoListContent } from './TodoListPageStyle';
 import { Logo, Form, Tabs, List } from '../../components';
 import { actionCreators } from './store';
@@ -21,7 +21,7 @@ export function TodoListPage() {
   const addTodoList = () => {
     if (inputValue) {
       const item = {
-        id: new Date().getTime().toString(),
+        id: Date.now().toString(),
         title: inputValue,
         process: EnumItemProcessTypes.ACTIVE,
         isModify: false,
@@ -33,7 +33,7 @@ export function TodoListPage() {
   const keyUpTodoList = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (inputValue && e.key === 'Enter') {
       const item = {
-        id: new Date().getTime().toString(),
+        id: Date.now().toString(),
         title: inputValue,
         process: EnumItemProcessTypes.ACTIVE,
         isModify: false,

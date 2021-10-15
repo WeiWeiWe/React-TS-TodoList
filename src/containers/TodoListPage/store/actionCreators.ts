@@ -70,7 +70,6 @@ export const deleteTodoListActionCreator = (id: string): DeleteTodoListAction =>
 };
 
 export const switchModifyStatusActionCreator = (status: boolean, id: string): SwitchModifyStatusAction => {
-  console.log(status, id);
   return {
     type: constants.SWITCH_MODIFY_STATUS,
     status,

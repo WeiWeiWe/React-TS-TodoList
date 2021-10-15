@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="sc-bdfBQB kWCrCd"
+        class="sc-gsTEea ckAaZ"
       >
         <ul
           class="list-fields"
@@ -20,7 +20,7 @@ Object {
               data-testid="list-item-check-box"
             >
               <span
-                class="sc-gsTEea dXjbGb"
+                class="sc-bdfBQB gHVZWr"
                 color="rgb(50, 197, 250)"
                 height="22px"
                 rotate="0"
@@ -55,7 +55,7 @@ Object {
               data-testid="modify-btn"
             >
               <span
-                class="sc-gsTEea daUMzG"
+                class="sc-bdfBQB fLHKPW"
                 color="rgb(50, 197, 250)"
                 height="30px"
                 rotate="0"
@@ -83,7 +83,7 @@ Object {
               data-testid="delete-btn"
             >
               <span
-                class="sc-gsTEea bKCwHa"
+                class="sc-bdfBQB FCyUS"
                 color="rgba(255, 0, 0, 0.9)"
                 height="30px"
                 rotate="0"
@@ -113,7 +113,7 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="sc-bdfBQB kWCrCd"
+      class="sc-gsTEea ckAaZ"
     >
       <ul
         class="list-fields"
@@ -127,7 +127,7 @@ Object {
             data-testid="list-item-check-box"
           >
             <span
-              class="sc-gsTEea dXjbGb"
+              class="sc-bdfBQB gHVZWr"
               color="rgb(50, 197, 250)"
               height="22px"
               rotate="0"
@@ -162,7 +162,7 @@ Object {
             data-testid="modify-btn"
           >
             <span
-              class="sc-gsTEea daUMzG"
+              class="sc-bdfBQB fLHKPW"
               color="rgb(50, 197, 250)"
               height="30px"
               rotate="0"
@@ -190,7 +190,7 @@ Object {
             data-testid="delete-btn"
           >
             <span
-              class="sc-gsTEea bKCwHa"
+              class="sc-bdfBQB FCyUS"
               color="rgba(255, 0, 0, 0.9)"
               height="30px"
               rotate="0"

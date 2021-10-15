@@ -1,6 +1,6 @@
 import React from 'react';
-import { ListStyle } from './ListStyle';
 import { Checkmark, PencilOutline, CloseOutline } from 'react-ionicons';
+import { ListStyle } from './ListStyle';
 import { ItemTypes, InputArrayRefType, EnumItemProcessTypes } from '../../types';
 
 export interface ListIprops {
@@ -31,9 +31,8 @@ export function List({
       ? list.filter((item) => {
           if (tabStatus === EnumItemProcessTypes.All) {
             return item;
-          } else {
-            return item.process === tabStatus;
           }
+          return item.process === tabStatus;
         })
       : [];
 
@@ -41,7 +40,8 @@ export function List({
     if (list?.length > 0) {
       if (tabStatus === EnumItemProcessTypes.DONE) {
         return <h3>No Done Items</h3>;
-      } else if (tabStatus === EnumItemProcessTypes.ACTIVE) {
+      }
+      if (tabStatus === EnumItemProcessTypes.ACTIVE) {
         return <h3>No Active Items</h3>;
       }
     }
@@ -62,7 +62,7 @@ export function List({
                 >
                   <Checkmark
                     cssClasses={item.process === EnumItemProcessTypes.DONE ? 'check-box-btn done' : 'check-box-btn'}
-                    color={'rgb(50, 197, 250)'}
+                    color="rgb(50, 197, 250)"
                   />
                 </span>
                 <input
@@ -86,13 +86,13 @@ export function List({
                 <i className="list-item-modify-icon" onClick={() => switchModifyStatus(item)} data-testid="modify-btn">
                   <PencilOutline
                     cssClasses={item.isModify ? 'modify-btn isClick' : 'modify-btn'}
-                    color={'rgb(50, 197, 250)'}
+                    color="rgb(50, 197, 250)"
                     width="35px"
                     height="30px"
                   />
                 </i>
                 <i className="list-item-delete-icon" onClick={() => deleteTodoList(item)} data-testid="delete-btn">
-                  <CloseOutline cssClasses="delete-btn" color={'rgba(255, 0, 0, 0.9)'} width="35px" height="30px" />
+                  <CloseOutline cssClasses="delete-btn" color="rgba(255, 0, 0, 0.9)" width="35px" height="30px" />
                 </i>
               </li>
             );

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './store/createStore';
-import App from './App';
 import reset from 'styled-reset';
 import { createGlobalStyle } from 'styled-components';
+import store from './store/createStore';
+import App from './App';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -34,5 +34,5 @@ ReactDOM.render(
       <App />
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root'),
+  document.querySelector('#root'),
 );

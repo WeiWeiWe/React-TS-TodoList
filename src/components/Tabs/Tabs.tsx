@@ -13,6 +13,7 @@ export function Tabs({ changeTabStatus, list, tabStatus }: TabsIprops) {
     <TabsStyle>
       <nav className="global-block-fields tabs-fields">
         <button
+          type="button"
           className={
             list?.length > 0
               ? tabStatus === EnumItemProcessTypes.ACTIVE
@@ -27,6 +28,7 @@ export function Tabs({ changeTabStatus, list, tabStatus }: TabsIprops) {
           <h2>ACTIVE</h2>
         </button>
         <button
+          type="button"
           className={
             list?.length > 0
               ? tabStatus === EnumItemProcessTypes.DONE
@@ -41,6 +43,7 @@ export function Tabs({ changeTabStatus, list, tabStatus }: TabsIprops) {
           <h2>DONE</h2>
         </button>
         <button
+          type="button"
           className={
             list?.length > 0
               ? tabStatus === EnumItemProcessTypes.All
