@@ -6,6 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const postcssFlexBugsFixes = require('postcss-flexbugs-fixes');
 
 const getCssLoaders = (importLoaders) => [
   isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -22,7 +23,7 @@ const getCssLoaders = (importLoaders) => [
     options: {
       postcssOptions: {
         plugins: [
-          require('postcss-flexbugs-fixes'),
+          postcssFlexBugsFixes,
           [
             'postcss-preset-env',
             {
