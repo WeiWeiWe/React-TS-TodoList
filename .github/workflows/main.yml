@@ -1,0 +1,38 @@
+name: Run Testing & Github Pages Deploy
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  setup-test-build-and-deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 15.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install package
+        run: npm install
+
+      - name: Run Test
+        run: npm run test
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy github pages
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist # The folder the action should deploy.
