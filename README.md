@@ -1,7 +1,7 @@
 # TODO LIST
 
 * 使用自行從零搭建的 Webpack5 項目環境，開發一個 [TODO LIST](https://weiweiwe.github.io/react-ts-jest-todolist/) 項目，並依照項目需求添加需要的插件。
-* 這裡主要說明 TODO LIST 項目，有關項目環境說明，可以點擊 [Webpack5 項目環境說明](https://github.com/WeiWeiWe/webpack5-react-ts-jest-template)。
+* 這裡主要說明 TODO LIST 項目，有關 Webpack5 項目環境說明，可以點擊 [Webpack5 項目環境說明](https://github.com/WeiWeiWe/webpack5-react-ts-jest-template)。
 
 ## 使用技術
 * 使用 styled-components 搭配 flex 佈局手刻頁面
